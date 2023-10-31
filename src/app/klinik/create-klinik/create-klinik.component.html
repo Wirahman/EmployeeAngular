@@ -1,0 +1,195 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="formKlinik" (ngSubmit) = "onCreate()">
+            <cds-control-message status="error">
+              <p style="white-space: pre;">
+                <font color="Red">{{ alertValidasi }}</font>
+              </p>
+            </cds-control-message>
+
+                <clr-control-container> 
+                    <label>Nama Klinik</label>
+                    <input id="name" name="name" type="text" formControlName="name" placeholder="Nama Klinik" [(ngModel)]="klinik.name" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama klinik</clr-control-error>
+                </clr-control-container>
+        
+                <clr-combobox-container>
+                    <label>Pelanggan</label>
+                    <clr-combobox formControlName="customer_id" [(ngModel)]="selectPelanggan"  (ngModelChange)="periksaAlert($event);"  name="customer_id" required>
+                        <clr-options>
+                            <clr-option *clrOptionItems="let row of pelanggan; field:'company_name'" [clrValue]="row">
+                                <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.company_name}}
+                                <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                            </clr-option>
+                        </clr-options>
+                    </clr-combobox>
+                    
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk pelanggan</clr-control-error>
+                </clr-combobox-container>   
+
+                <clr-control-container>
+                    <label>NPWP</label>
+                    <input id="npwp" name="npwp" type="text" formControlName="npwp" placeholder="NPWP" [(ngModel)]="klinik.npwp" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nomor NPWP</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Hanya bisa dimasukkan dengan angka</clr-control-error>
+                    <clr-control-error *clrIfError="'minLength'">Nomor NPWP harus diisi dengan 16 digit</clr-control-error>
+                    <clr-control-error *clrIfError="'maxLength'">Nomor NPWP harus diisi dengan 16 digit</clr-control-error>
+                </clr-control-container>    
+
+                <clr-textarea-container>
+                    <label>Alamat</label>
+                    <!-- <input id="description" name="description" type="text" class="form-control" placeholder="Description" formControlName="description" [(ngModel)]="permission.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl> -->
+                    <textarea id="address" name="address" type="text" class="form-control" placeholder="Alamat" formControlName="address" [(ngModel)]="klinik.address" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrTextarea></textarea>
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk alamat</clr-control-error>
+                </clr-textarea-container>
+                  
+                <div class="clr-row">
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Provinsi</label>
+                        <clr-combobox formControlName="provinsi_id" [(ngModel)]="selectProvinsi" (ngModelChange)="periksaAlert($event);ambilKabupatenKotaPerProvinsi();" name="provinsi_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of provinsi; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk provinsi</clr-control-error>
+                    </clr-combobox-container>    
+            
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Kabupaten / Kota</label>
+                        <clr-combobox formControlName="kabupaten_kota_id" [(ngModel)]="selectKabupatenKota"  (ngModelChange)="periksaAlert($event);ambilKecamatanPerKabupatenKota();"  name="kabupaten_kota_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of kabupatenKota; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk peran</clr-control-error>
+                    </clr-combobox-container>
+                </div>
+            
+                <div class="clr-row">
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Kecamatan</label>
+                        <clr-combobox formControlName="kecamatan_id" [(ngModel)]="selectKecamatan"  (ngModelChange)="periksaAlert($event);ambilDesaKelurahanPerKecamatan();"  name="kecamatan_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of kecamatan; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk kecamatan</clr-control-error>
+                    </clr-combobox-container>
+
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Desa / Kelurahan</label>
+                        <clr-combobox formControlName="desa_kelurahan_id" [(ngModel)]="selectDesaKelurahan" (ngModelChange)="periksaAlert($event)" name="desa_kelurahan_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of desaKelurahan; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk desa / kelurahan</clr-control-error>
+                    </clr-combobox-container>  
+                </div>
+            
+                <clr-control-container>
+                    <label>Kode Pos</label>
+                    <input id="zipcode" name="zipcode" type="text" formControlName="zipcode" placeholder="Kode Pos" [(ngModel)]="klinik.zipcode" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nomor Kode Pos</clr-control-error>
+                </clr-control-container>    
+
+                <clr-control-container>
+                    <label>No Telp</label>
+                    <input id="phone_number" name="phone_number" type="text" formControlName="phone_number" placeholder="No Telp" [(ngModel)]="klinik.phone_number" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nomor Telp</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Hanya bisa dimasukkan dengan angka</clr-control-error>
+                </clr-control-container>    
+
+                <clr-control-container>
+                    <label>Email</label>
+                    <input id="email" name="email" type="text" formControlName="email" placeholder="Email" [(ngModel)]="klinik.email" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk Email</clr-control-error>
+                    <clr-control-error *clrIfError="'email'">Harap Masukan email dengan benar</clr-control-error>
+                </clr-control-container>    
+
+                <clr-control-container>
+                    <label>PIC</label>
+                    <input id="pic_name" name="pic_name" type="text" formControlName="pic_name" placeholder="PIC" [(ngModel)]="klinik.pic_name" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama PIC</clr-control-error>
+                </clr-control-container>    
+
+                <clr-control-container>
+                    <label>No Telp PIC</label>
+                    <input id="pic_phone_number" name="pic_phone_number" type="text" formControlName="pic_phone_number" placeholder="No Telp PIC" [(ngModel)]="klinik.pic_phone_number" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nomor kontak PIC</clr-control-error>
+                </clr-control-container>    
+
+                <clr-control-container>
+                    <div class="clr-toggle-wrapper">
+                        <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="klinik.status" (ngModelChange)="periksaAlert($event)" value="active" class="clr-toggle" />
+                        <label for="status" class="clr-control-label">Status</label>
+                    </div>
+                </clr-control-container>
+                
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>
+            <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+        <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

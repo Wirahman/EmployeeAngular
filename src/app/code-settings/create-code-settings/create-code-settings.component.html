@@ -1,0 +1,59 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formCodeSettings" (ngSubmit) = "onCreate()">
+            <p style="white-space: pre-wrap;">
+                <clr-control-container>
+                    <label>Nama Table</label>
+                    <input id="table_name" name="table_name" type="text" class="form-control" placeholder="Nama Table" formControlName="table_name" [(ngModel)]="codeSettings.table_name" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama table</clr-control-error>
+                </clr-control-container>
+                            
+                <clr-control-container>
+                    <label>Label</label>
+                    <input id="label" name="label" type="text" class="form-control" placeholder="Label" formControlName="label" [(ngModel)]="codeSettings.label" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk label</clr-control-error>
+                </clr-control-container>
+                               
+                <clr-control-container>
+                    <label>Prefix</label>
+                    <input id="prefix" name="prefix" type="text" class="form-control" placeholder="Prefix" formControlName="prefix" [(ngModel)]="codeSettings.prefix" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk prefix</clr-control-error>
+                </clr-control-container>
+                            
+                <clr-control-container>
+                    <label>Digit</label>
+                    <input id="digit" name="digit" type="text" class="form-control" placeholder="Digit" formControlName="digit" [(ngModel)]="codeSettings.digit" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk digit</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Hanya bisa diisi dengan angka</clr-control-error>
+                </clr-control-container>
+                            
+                <clr-control-container>
+                    <label>Jumlah Data</label>
+                    <input id="counter" name="counter" type="text" class="form-control" placeholder="Counter" formControlName="counter" [(ngModel)]="codeSettings.counter" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk jumlah data</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Hanya bisa diisi dengan angka</clr-control-error>
+                </clr-control-container>
+                            
+                <!-- <clr-control-container>
+                    <label>Email</label>
+                    <input id="email" name="email" type="email" class="form-control" placeholder="Email" formControlName="email" [(ngModel)]="pelanggan.email" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                    <clr-control-error *clrIfError="'email'">Invalid Email</clr-control-error>
+                </clr-control-container>
+                
+                <clr-control-container>
+                    <label>No. Telp</label>
+                    <input id="hp" name="hp" type="text" class="form-control" placeholder="Handphone" formControlName="hp" [(ngModel)]="pelanggan.hp" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Only Number</clr-control-error>
+                </clr-control-container> -->
+    
+                <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>&#160;&#160;
+                <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+            </p>
+        </form>
+    </div>
+</clr-modal>

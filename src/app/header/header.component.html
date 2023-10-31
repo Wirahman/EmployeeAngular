@@ -1,0 +1,67 @@
+<clr-main-container>
+    <clr-header class="header">
+        <div class="branding">
+            <!--<img src="assets/img/brand.png" alt="" /> -->
+            <div href="..." class="box">
+                <div class="title"><span>CLE</span>NIC</div>
+            </div>
+        </div>
+        <div class="header-actions">
+            <clr-dropdown class="button-dropdown">
+                <div class="user-panel" clrDropdownTrigger>
+                    <img class="img-circle" src="assets/img/brand.png" alt="" />
+                    <div class="info">
+                        <span class="username">{{ username }}</span>
+                        <span class="description">{{ hak_akses }}</span>
+                    </div>    
+                </div>
+                <!-- <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                    <a href="..." clrDropdownItem *ngIf="hiddenMenu==true">About</a>
+                    <a href="..." clrDropdownItem *ngIf="hiddenMenu==false">Preference</a>
+                    <a (click)="logout()" href="..." clrDropdownItem *ngIf="hiddenMenu==true">Biodata</a>
+                    <a (click)="logout()" clrDropdownItem *ngIf="hiddenMenu==true">Keluar</a>
+                </clr-dropdown-menu> -->
+            </clr-dropdown>    
+        </div>      
+    </clr-header>
+    <div class="content-container">
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+        <clr-vertical-nav class="clr-vertical-nav has-icons" [clr-nav-level]="1">
+            <div class="nav-content">
+                <div role="list" *ngIf="rolePermission.length > 0">
+                    <a role="listitem" clrVerticalNavLink routerLinkActive="active" (click)="checkSession">
+                        <cds-icon shape="grid-view" class="nav-icon ng-star-inserted"></cds-icon>
+                        <span class="nav-text"> Check Session </span>
+                    </a>
+                    <!-- <a role="listitem" clrVerticalNavLink routerLinkActive="active">
+                        <cds-icon shape="grid-view" class="nav-icon ng-star-inserted"></cds-icon>
+                        <span class="nav-text"> Beranda </span>
+                    </a> -->
+                    <tr *ngFor="let row of rolePermission">
+                        <a *ngIf="row.role_id==roleID" role="listitem" class="nav-link" [routerLink]="row.router_link" >
+                            <cds-icon shape="{{ row.icon }}" class="nav-icon ng-star-inserted"></cds-icon>
+                            <span class="nav-text"> {{ row.menu }} </span>
+                        </a>
+                        <!-- {{row.role_id}} -->
+                    </tr>
+                    <div class="nav-divider"></div>
+                </div>
+                <!-- <a (click)="resetPassword()">Reset Password</a>
+                <a (click)="logout()">Logout</a> -->
+                <a (click)="resetPassword()" clrVerticalNavLink title="Ubah kata sandi">
+                    <cds-icon shape="wrench" class="nav-icon ng-star-inserted"></cds-icon>
+                    <span class="nav-text">Ubah Kata Sandi</span>
+                </a>
+                <a (click)="logout()" clrVerticalNavLink *ngIf="hiddenMenu==true" title="Keluar">
+                    <cds-icon shape="logout" class="nav-icon ng-star-inserted"></cds-icon>
+                    <span class="nav-text"> Keluar </span>
+                </a>
+            </div>
+            <img src="assets/img/logo.png" class="nav-vertical-img" />
+        </clr-vertical-nav>
+    </div>
+</clr-main-container>
+
+<app-reset-password></app-reset-password>

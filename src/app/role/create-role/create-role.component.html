@@ -1,0 +1,299 @@
+<div class="createRole">
+    <cds-control-message status="error" style="width:40%;">
+      <p style="white-space: pre;">
+        <font color="Red">{{ alertValidasi }}</font>
+      </p>
+    </cds-control-message>
+    <form [formGroup]="formRole" (ngSubmit) = "onCreate()">
+        <p style="white-space: pre-wrap;">
+            <clr-control-container style="width:20%;">
+                <label>Nama</label>
+                <input id="name" name="name" type="text" class="form-control" placeholder="Nama" formControlName="name" [(ngModel)]="role.name" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                <clr-control-error *clrIfError="'required'">Harap isi data untuk nama</clr-control-error>
+            </clr-control-container>
+                        
+            <!-- <clr-control-container style="width:20%;">
+                <label>Email</label>
+                <input id="email" name="email" type="email" class="form-control" placeholder="Email" formControlName="email" [(ngModel)]="pelanggan.email" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                <clr-control-error *clrIfError="'email'">Invalid Email</clr-control-error>
+            </clr-control-container>
+            
+            <clr-control-container style="width:20%;">
+                <label>No. Telp</label>
+                <input id="hp" name="hp" type="text" class="form-control" placeholder="Handphone" formControlName="hp" [(ngModel)]="pelanggan.hp" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                <clr-control-error *clrIfError="'pattern'">Only Number</clr-control-error>
+            </clr-control-container> -->
+            
+            <clr-control-container>
+                <div class="clr-toggle-wrapper">
+                    <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="role.status" (ngModelChange)="periksaAlert($event)" value="active" class="clr-toggle" />
+                    <label for="status" class="clr-control-label">Status</label>
+                </div>
+                <!-- <label>Status</label>
+                <select id="status" name="status" class="form-control" placeholder="Status" formControlName="status" [(ngModel)]="role.status" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >  
+                    <option disabled>Status</option>  
+                    <option>Choose Status</option>  
+                    <option value="active">Aktif</option>  
+                    <option value="inactive">Tidak Aktif</option>   
+                </select>  
+                <clr-control-error *clrIfError="'required'">Harap isi data untuk status</clr-control-error> -->
+            </clr-control-container>
+            
+            <clr-textarea-container>
+                <label>Deskripsi</label>
+                <!-- <input id="description" name="description" type="text" class="form-control" placeholder="Description" formControlName="description" [(ngModel)]="role.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl> -->
+                <textarea id="description" name="description" type="text" class="form-control" placeholder="Deskripsi" formControlName="description" [(ngModel)]="role.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrTextarea></textarea>
+                <clr-control-error *clrIfError="'required'">Harap isi data untuk deskripsi</clr-control-error>
+            </clr-textarea-container>
+            
+
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>&#160;&#160;
+            <button type="reset" class="btn btn-outline-dark" [routerLink]="['../../Dashboard/Role']">Batal</button>
+        </p>
+    </form>
+</div>
+
+<div class = "row headerRolePermission">
+    <div class="text-header">
+        <h1>
+            <b>
+                {{ titlePermission }}
+            </b>
+        </h1>
+    </div>
+    <div class="col-md-12">
+        <table>
+            <thead class="table table-compact">
+                <th width = "100px">Module</th>
+                <th width = "50px">Read</th>
+                <th width = "50px">Create</th>
+                <th width = "50px">Update</th>
+                <th width = "50px">Delete</th>
+                <th>
+                    <a (click) = "updateRoleSemuaPermission()"> <input id="checkbox" type="checkbox" [checked]=checkBoxAllFitur />
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width = "100px" text-align="right">Pengguna</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read User')"> <input id="checkboxReadUser{{ role.id }}" type="checkbox" [checked]="checkboxReadUser" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create User')"> <input id="checkboxCreateUser{{ role.id }}" type="checkbox" [checked]="checkboxCreateUser" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update User')"> <input id="checkboxUpdateUser{{ role.id }}" type="checkbox" [checked]="checkboxUpdateUser" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete User')"> <input id="checkboxDeleteUser{{ role.id }}" type="checkbox" [checked]="checkboxDeleteUser" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Peran</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Role')"> <input id="checkboxReadRole{{ role.id }}" type="checkbox" [checked]="checkboxReadRole" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Role')"> <input id="checkboxCreateRole{{ role.id }}" type="checkbox" [checked]="checkboxCreateRole" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Role')"> <input id="checkboxUpdateRole{{ role.id }}" type="checkbox" [checked]="checkboxUpdateRole" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Role')"> <input id="checkboxDeleteRole{{ role.id }}" type="checkbox" [checked]="checkboxDeleteRole" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Hak Akses</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Permission')"> <input id="checkboxReadPermission{{ role.id }}" type="checkbox" [checked]="checkboxReadPermission" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Permission')"> <input id="checkboxCreatePermission{{ role.id }}" type="checkbox" [checked]="checkboxCreatePermission" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Permission')"> <input id="checkboxUpdatePermission{{ role.id }}" type="checkbox" [checked]="checkboxUpdatePermission" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Permission')"> <input id="checkboxDeletePermission{{ role.id }}" type="checkbox" [checked]="checkboxDeletePermission" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Unit</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Department')"> <input id="checkboxReadDepartment{{ role.id }}" type="checkbox" [checked]="checkboxReadDepartment" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Department')"> <input id="checkboxCreateDepartment{{ role.id }}" type="checkbox" [checked]="checkboxCreateDepartment" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Department')"> <input id="checkboxUpdateDepartment{{ role.id }}" type="checkbox" [checked]="checkboxUpdateDepartment" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Department')"> <input id="checkboxDeleteDepartment{{ role.id }}" type="checkbox" [checked]="checkboxDeleteDepartment" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Kode Master</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Code Settings')"> <input id="checkboxReadCodeSettings{{ role.id }}" type="checkbox" [checked]="checkboxReadCodeSettings" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Code Settings')"> <input id="checkboxCreateCodeSettings{{ role.id }}" type="checkbox" [checked]="checkboxCreateCodeSettings" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Code Settings')"> <input id="checkboxUpdateCodeSettings{{ role.id }}" type="checkbox" [checked]="checkboxUpdateCodeSettings" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Code Settings')"> <input id="checkboxDeleteCodeSettings{{ role.id }}" type="checkbox" [checked]="checkboxDeleteCodeSettings" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Pelanggan</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Customer')"> <input id="checkboxReadCustomer{{ role.id }}" type="checkbox" [checked]="checkboxReadCustomer" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Customer')"> <input id="checkboxCreateCustomer{{ role.id }}" type="checkbox" [checked]="checkboxCreateCustomer" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Customer')"> <input id="checkboxUpdateCustomer{{ role.id }}" type="checkbox" [checked]="checkboxUpdateCustomer" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Customer')"> <input id="checkboxDeleteCustomer{{ role.id }}" type="checkbox" [checked]="checkboxDeleteCustomer" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Klinik</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Klinik')"> <input id="checkboxReadKlinik{{ role.id }}" type="checkbox" [checked]="checkboxReadKlinik" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Klinik')"> <input id="checkboxCreateKlinik{{ role.id }}" type="checkbox" [checked]="checkboxCreateKlinik" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Klinik')"> <input id="checkboxUpdateKlinik{{ role.id }}" type="checkbox" [checked]="checkboxUpdateKlinik" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Klinik')"> <input id="checkboxDeleteKlinik{{ role.id }}" type="checkbox" [checked]="checkboxDeleteKlinik" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">User Clenic</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read User Clenic')"> <input id="checkboxReadUserClenic{{ role.id }}" type="checkbox" [checked]="checkboxReadUserClenic" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create User Clenic')"> <input id="checkboxCreateUserClenic{{ role.id }}" type="checkbox" [checked]="checkboxCreateUserClenic" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update User Clenic')"> <input id="checkboxUpdateUserClenic{{ role.id }}" type="checkbox" [checked]="checkboxUpdateUserClenic" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete User Clenic')"> <input id="checkboxDeleteUserClenic{{ role.id }}" type="checkbox" [checked]="checkboxDeleteUserClenic" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Package Header</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Package Header')"> <input id="checkboxReadPackageHeader{{ role.id }}" type="checkbox" [checked]="checkboxReadPackageHeader" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Package Header')"> <input id="checkboxCreatePackageHeader{{ role.id }}" type="checkbox" [checked]="checkboxCreatePackageHeader" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Package Header')"> <input id="checkboxUpdatePackageHeader{{ role.id }}" type="checkbox" [checked]="checkboxUpdatePackageHeader" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Package Header')"> <input id="checkboxDeletePackageHeader{{ role.id }}" type="checkbox" [checked]="checkboxDeletePackageHeader" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Package Detail</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Package Detail')"> <input id="checkboxReadPackageDetail{{ role.id }}" type="checkbox" [checked]="checkboxReadPackageDetail" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Package Detail')"> <input id="checkboxCreatePackageDetail{{ role.id }}" type="checkbox" [checked]="checkboxCreatePackageDetail" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Package Detail')"> <input id="checkboxUpdatePackageDetail{{ role.id }}" type="checkbox" [checked]="checkboxUpdatePackageDetail" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Package Detail')"> <input id="checkboxDeletePackageDetail{{ role.id }}" type="checkbox" [checked]="checkboxDeletePackageDetail" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Terms Of Payment</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Terms Of Payment')"> <input id="checkboxReadTermsOfPayment{{ role.id }}" type="checkbox" [checked]="checkboxReadTermsOfPayment" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Terms Of Payment')"> <input id="checkboxCreateTermsOfPayment{{ role.id }}" type="checkbox" [checked]="checkboxCreateTermsOfPayment" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Terms Of Payment')"> <input id="checkboxUpdateTermsOfPayment{{ role.id }}" type="checkbox" [checked]="checkboxUpdateTermsOfPayment" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Terms Of Payment')"> <input id="checkboxDeleteTermsOfPayment{{ role.id }}" type="checkbox" [checked]="checkboxDeleteTermsOfPayment" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Contract Header</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Contract Header')"> <input id="checkboxReadContractHeader{{ role.id }}" type="checkbox" [checked]="checkboxReadContractHeader" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Contract Header')"> <input id="checkboxCreateContractHeader{{ role.id }}" type="checkbox" [checked]="checkboxCreateContractHeader" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Contract Header')"> <input id="checkboxUpdateContractHeader{{ role.id }}" type="checkbox" [checked]="checkboxUpdateContractHeader" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Contract Header')"> <input id="checkboxDeleteContractHeader{{ role.id }}" type="checkbox" [checked]="checkboxDeleteContractHeader" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Contract Detail</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Contract Detail')"> <input id="checkboxReadContractDetail{{ role.id }}" type="checkbox" [checked]="checkboxReadContractDetail" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Create Contract Detail')"> <input id="checkboxCreateContractDetail{{ role.id }}" type="checkbox" [checked]="checkboxCreateContractDetail" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Update Contract Detail')"> <input id="checkboxUpdateContractDetail{{ role.id }}" type="checkbox" [checked]="checkboxUpdateContractDetail" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Contract Detail')"> <input id="checkboxDeleteContractDetail{{ role.id }}" type="checkbox" [checked]="checkboxDeleteContractDetail" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = "100px" text-align="right">Log Aktifitas</td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Read Log Activities')"> <input id="checkboxReadLogActivities{{ role.id }}" type="checkbox" [checked]="checkboxReadLogActivities" /></a>
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <!-- <a (click) = "updateRolePermission('Create Log Activities')"> <input id="checkboxCreateLogActivities{{ role.id }}" type="checkbox" [checked]="checkboxCreateLogActivities" /></a> -->
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <!-- <a (click) = "updateRolePermission('Update Log Activities')"> <input id="checkboxUpdateLogActivities{{ role.id }}" type="checkbox" [checked]="checkboxUpdateLogActivities" /></a> -->
+                    </td>
+                    <td width = "100px" text-align="right">
+                        <a (click) = "updateRolePermission('Delete Log Activities')"> <input id="checkboxDeleteLogActivities{{ role.id }}" type="checkbox" [checked]="checkboxDeleteLogActivities" /></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <button type="submit" class="btn btn-primary" (click) = "periksaSessionCheckButton()">Periksa Isi Check Box</button>&#160;&#160; -->
+
+
+

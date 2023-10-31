@@ -1,0 +1,152 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+    <div class="modal-body">
+        <div class="updatePengguna">
+            <form [formGroup]="formKepalaKontrak" (ngSubmit) = "onUpdate()" *ngIf="contractHeader">
+                <cds-control-message status="error" style="width:40%;">
+                  <p style="white-space: pre;">
+                    <font color="Red">{{ alertValidasi }}</font>
+                  </p>
+                </cds-control-message>
+                
+                <input id="id" name="id" type="hidden" class="form-control" placeholder="ID" formControlName="id" 
+                [(ngModel)]="contractHeader.id" >
+
+                <clr-control-container>
+                    <label>Kode</label>
+                    <input id="code" name="code" type="text" class="form-control" placeholder="Code" formControlName="code" [(ngModel)]="contractHeader.code" (ngModelChange)="periksaAlert($event)" size="100" clrControl required >
+                </clr-control-container>
+
+                <div class="clr-row">
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Pelanggan</label>
+                        <clr-combobox formControlName="customer_id" [(ngModel)]="selectPelanggan"  (ngModelChange)="periksaAlert($event);"  name="customer_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of pelanggan; field:'company_name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.company_name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk pelanggan</clr-control-error>
+                    </clr-combobox-container>
+    
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Klinik</label>
+                        <clr-combobox formControlName="clinic_id" [(ngModel)]="selectKlinik" (ngModelChange)="periksaAlert($event)" name="clinic_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of klinik; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk klinik</clr-control-error>
+                    </clr-combobox-container>  
+                </div>
+    
+                <clr-date-container> 
+                    <label>Tanggal Kontrak</label>
+                    <input id="contract_date" name="contract_date" type="date" formControlName="contract_date" placeholder="Tanggal Kontrak" [(ngModel)]="contractHeader.contract_date" (ngModelChange)="periksaAlert($event)" autocomplete="off" clrDate required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk tanggal kontrak</clr-control-error>
+                </clr-date-container>
+        
+                <div class="clr-row">
+                    <clr-date-container class="clr-col-6"> 
+                        <label>Tanggal Mulai Kontrak</label>
+                        <input id="contract_start_date" name="contract_start_date" type="date" formControlName="contract_start_date" placeholder="Tanggal Mulai Kontrak" [(ngModel)]="contractHeader.contract_start_date" (ngModelChange)="periksaAlert($event)" autocomplete="off" clrDate required >
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk tanggal mulai kontrak</clr-control-error>
+                    </clr-date-container>
+            
+                    <clr-date-container class="clr-col-6"> 
+                        <label>Tanggal Akhir Kontrak</label>
+                        <input id="contract_end_date" name="contract_end_date" type="date" formControlName="contract_end_date" placeholder="Tanggal Akhir Kontrak" [(ngModel)]="contractHeader.contract_end_date" (ngModelChange)="periksaAlert($event)" autocomplete="off" clrDate required >
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk tanggal akhir kontrak</clr-control-error>
+                    </clr-date-container>
+                </div>
+            
+                <clr-control-container> 
+                    <label>Sub Total</label>
+                    <input id="subtotal" name="subtotal" type="text" formControlName="subtotal" placeholder="Sub Total" [(ngModel)]="contractHeader.subtotal" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk sub total</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container> 
+                    <label>Tipe Diskon</label>
+                    <input id="discount_type" name="discount_type" type="text" formControlName="discount_type" placeholder="Tipe Diskon" [(ngModel)]="contractHeader.discount_type" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk tipe diskon</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container> 
+                    <label>Nilai Diskon</label>
+                    <input id="discount_value" name="discount_value" type="text" formControlName="discount_value" placeholder="Nilai Diskon" [(ngModel)]="contractHeader.discount_value" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nilai diskon</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container> 
+                    <label>Tipe Pajak</label>
+                    <input id="tax_type" name="tax_type" type="text" formControlName="tax_type" placeholder="Tipe pajak" [(ngModel)]="contractHeader.tax_type" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk tipe pajak</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container> 
+                    <label>Persentase Pajak</label>
+                    <input id="tax_percentage" name="tax_percentage" type="text" formControlName="tax_percentage" placeholder="Persentase pajak" [(ngModel)]="contractHeader.tax_percentage" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk tipe pajak</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container> 
+                    <label>Nilai Pajak</label>
+                    <input id="tax_value" name="tax_value" type="text" formControlName="tax_value" placeholder="Nilai pajak" [(ngModel)]="contractHeader.tax_value" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk tipe pajak</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container> 
+                    <label>Total</label>
+                    <input id="grand_total" name="grand_total" type="text" formControlName="grand_total" placeholder="Total" [(ngModel)]="contractHeader.grand_total" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk tipe pajak</clr-control-error>
+                </clr-control-container>
+        
+                <clr-combobox-container>
+                    <label>Pembayaran</label>
+                    <clr-combobox formControlName="term_of_payments_id" [(ngModel)]="selectTermOfPayments" (ngModelChange)="periksaAlert($event)" name="term_of_payments_id" required>
+                        <clr-options>
+                            <clr-option *clrOptionItems="let row of termOfPayments; field:'name'" [clrValue]="row">
+                                <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                            </clr-option>
+                        </clr-options>
+                    </clr-combobox>
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk pembayaran</clr-control-error>
+                </clr-combobox-container>  
+    
+                <clr-control-container>
+                    <div class="clr-toggle-wrapper">
+                        <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="contractHeader.status" (ngModelChange)="periksaAlert($event)" value="active" class="clr-toggle" />
+                        <label for="status" class="clr-control-label">Status</label>
+                    </div>
+                </clr-control-container>
+                
+                <clr-textarea-container>
+                    <label>Deskripsi</label>
+                    <!-- <input id="description" name="description" type="text" class="form-control" placeholder="Description" formControlName="description" [(ngModel)]="permission.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl> -->
+                    <textarea id="description" name="description" type="text" class="form-control" placeholder="Deskripsi" formControlName="description" [(ngModel)]="contractHeader.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrTextarea></textarea>
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk deskripsi</clr-control-error>
+                </clr-textarea-container>
+                  
+                <button type="submit" class="btn btn-primary" [disabled]="buttonUpdate">Ubah</button>&#160;&#160;
+                <!-- <button type="reset" class="btn btn-danger" [routerLink]="['../../../Dashboard/Pengguna']">Cancel</button> -->
+                <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+      <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+
+

@@ -1,0 +1,65 @@
+<div class="clr-row">
+    <div class="clr-col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="content-header">
+                    <div class="content-title"> <img src="assets/icons/log.png" class="img-icon" />{{ title }}</div>
+                    <div class="content-element">
+                        <a (click)="popupDeleteLogAktifitas()" class="btn btn-rounded btn-danger btn-icon" [hidden]="statusButtonDelete">
+                            <cds-icon shape="trash" class="nav-icon ng-star-inserted"></cds-icon>
+                            Hapus Data Log Aktifitas
+                        </a>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                        <clr-datagrid>
+                            <!--<clr-dg-column>No</clr-dg-column>-->
+                            <clr-dg-column [clrDgField]="'table_name'">Nama Table</clr-dg-column>
+                            <!-- <clr-dg-column [clrDgField]="'table_id'">Table ID</clr-dg-column> -->
+                            <clr-dg-column [clrDgField]="'action'">Aksi</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'changes'">Perubahan</clr-dg-column>
+                            <!-- <clr-dg-column [clrDgField]="'ip'">IP Address</clr-dg-column> -->
+                            <!-- <clr-dg-column [clrDgField]="'agent'">Agent</clr-dg-column> -->
+                            <clr-dg-column [clrDgField]="'code_user'">Kode Pengguna</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'name_user'">Nama Pengguna</clr-dg-column>
+          
+                            <clr-dg-row *clrDgItems="let row of logActivities let i = index" [class.active]="i == currentIndex">
+                                <!--<clr-dg-cell>{{i + 1}}</clr-dg-cell>-->
+                                <clr-dg-cell><a (click)="detailLogActivities(
+                                    row.id,
+                                    row.table_name,
+                                    row.table_id,
+                                    row.action,
+                                    row.changes,
+                                    row.ip,
+                                    row.agent,
+                                    row.code_user,
+                                    row.name_user
+                                )" data-title="Lihat" class="label label-info">{{row.table_name}}</a></clr-dg-cell>
+                                <!-- <clr-dg-cell>{{row.table_id}}</clr-dg-cell> -->
+                                <clr-dg-cell>{{row.action}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.changes}}</clr-dg-cell>
+                                <!-- <clr-dg-cell>{{row.ip}}</clr-dg-cell> -->
+                                <!-- <clr-dg-cell>{{row.agent}}</clr-dg-cell> -->
+                                <clr-dg-cell>{{row.code_user}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.name_user}}</clr-dg-cell>
+                            </clr-dg-row>
+                            <clr-dg-footer>
+                            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                                <clr-dg-page-size #clrDgPageSize [clrPageSizeOptions]="[10,20,50,100]">
+                                    <label [for]="clrDgPageSize.pageSizeOptionsId">Halaman</label>
+                                </clr-dg-page-size>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                dari {{pagination.totalItems}} Log Aktifitas
+                            </clr-dg-pagination>
+                            </clr-dg-footer>
+                        </clr-datagrid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modals></app-modals>
+<app-delete-log-activities></app-delete-log-activities>

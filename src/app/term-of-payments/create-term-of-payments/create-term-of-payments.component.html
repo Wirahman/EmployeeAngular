@@ -1,0 +1,88 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="formTermOfPayments" (ngSubmit) = "onCreate()">
+            <cds-control-message status="error">
+              <p style="white-space: pre;">
+                <font color="Red">{{ alertValidasi }}</font>
+              </p>
+            </cds-control-message>
+
+                <clr-control-container> 
+                    <label>Nama Pembayaran</label>
+                    <input id="name" name="name" type="text" formControlName="name" placeholder="Nama Pembayaran" [(ngModel)]="termOfPayments.name" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama pembayaran</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container>
+                    <label>Tempo</label>
+                    <input id="tempo" name="tempo" type="text" formControlName="tempo" placeholder="Tempo" [(ngModel)]="termOfPayments.tempo" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk tempo</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Hanya bisa dimasukkan dengan angka</clr-control-error>
+                </clr-control-container>    
+
+                <clr-control-container>
+                    <div class="clr-toggle-wrapper">
+                        <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="termOfPayments.status" (ngModelChange)="periksaAlert($event)" value="active" class="clr-toggle" />
+                        <label for="status" class="clr-control-label">Status</label>
+                    </div>
+                </clr-control-container>
+                
+                <clr-control-container>
+                    <label>Deskripsi</label>
+                    <input id="description" name="description" type="text" formControlName="description" placeholder="Deskripsi" [(ngModel)]="termOfPayments.description" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk Deskripsi</clr-control-error>
+                </clr-control-container>    
+
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>
+            <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+        <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

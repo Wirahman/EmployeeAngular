@@ -1,0 +1,48 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formDepartment" (ngSubmit) = "onCreate()">
+            <p style="white-space: pre-wrap;">
+                <clr-control-container style="width:20%;">
+                    <label>Nama</label>
+                    <input id="name" name="name" type="text" class="form-control" placeholder="Nama" formControlName="name" [(ngModel)]="department.name" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama</clr-control-error>
+                </clr-control-container>
+                            
+                <!-- <clr-control-container style="width:20%;">
+                    <label>Email</label>
+                    <input id="email" name="email" type="email" class="form-control" placeholder="Email" formControlName="email" [(ngModel)]="pelanggan.email" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                    <clr-control-error *clrIfError="'email'">Invalid Email</clr-control-error>
+                </clr-control-container>
+                
+                <clr-control-container style="width:20%;">
+                    <label>No. Telp</label>
+                    <input id="hp" name="hp" type="text" class="form-control" placeholder="Handphone" formControlName="hp" [(ngModel)]="pelanggan.hp" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Only Number</clr-control-error>
+                </clr-control-container> -->
+                
+                <clr-control-container style="width:20%;">
+                    <div class="clr-toggle-wrapper">
+                        <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="department.status" (ngModelChange)="periksaAlert($event)" value="Active" class="clr-toggle" />
+                        <label for="status" class="clr-control-label">Status</label>
+                    </div>
+                    <!-- <label>Status</label>
+                    <select id="status" name="status" class="form-control" placeholder="Status" formControlName="status" [(ngModel)]="department.status" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl required >  
+                        <option disabled>Status</option>  
+                        <option>Choose Website</option>  
+                        <option value="Active">Active</option>  
+                        <option value="Inactive">Inactive</option>   
+                    </select>  
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk status</clr-control-error> -->
+                </clr-control-container>
+                
+                <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>&#160;&#160;
+                <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+            </p>
+        </form>
+    </div>
+</clr-modal>

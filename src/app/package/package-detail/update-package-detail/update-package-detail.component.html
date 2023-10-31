@@ -1,0 +1,65 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+    <div class="modal-body">
+        <div class="updatePengguna">
+            <form [formGroup]="formPackageDetail" (ngSubmit) = "onUpdate()" *ngIf="packageDetail">
+                <cds-control-message status="error" style="width:40%;">
+                  <p style="white-space: pre;">
+                    <font color="Red">{{ alertValidasi }}</font>
+                  </p>
+                </cds-control-message>
+                
+                <input id="id" name="id" type="hidden" class="form-control" placeholder="ID" formControlName="id" 
+                [(ngModel)]="packageDetail.id" >
+
+                    
+                <div class="clr-row">
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Package Header</label>
+                        <clr-combobox formControlName="package_header_id" [(ngModel)]="selectPackageHeader" (ngModelChange)="periksaAlert($event);" name="package_header_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of package_header; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk Kepala Paket</clr-control-error>
+                    </clr-combobox-container>    
+            
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Pengguna Clenic</label>
+                        <clr-combobox formControlName="user_clenic_id" [(ngModel)]="selectUserClenic" (ngModelChange)="periksaAlert($event);" name="user_clenic_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of user_clenic; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk User Clenic</clr-control-error>
+                    </clr-combobox-container>    
+                </div>
+                
+                <clr-control-container>
+                    <label>Jumlah</label>
+                    <input id="qty" name="qty" type="text" formControlName="qty" placeholder="Jumlah" [(ngModel)]="packageDetail.qty" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk Jumlah</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Hanya bisa dimasukkan dengan angka</clr-control-error>
+                </clr-control-container>    
+
+                <button type="submit" class="btn btn-primary" [disabled]="buttonUpdate">Ubah</button>&#160;&#160;
+                <!-- <button type="reset" class="btn btn-danger" [routerLink]="['../../../Dashboard/Pengguna']">Cancel</button> -->
+                <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+      <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+
+

@@ -1,0 +1,76 @@
+<div class="clr-row">
+    <div class="clr-col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="content-header">
+                    <div class="content-title"> <img src="assets/icons/manager.png" class="img-icon" />{{ title }}</div>
+                    <div class="content-element">
+                        <a (click)="popupCreateUserClenic()" class="btn btn-rounded btn-primary btn-icon" [hidden]="statusButtonCreate">
+                            <cds-icon shape="plus-circle" class="nav-icon ng-star-inserted"></cds-icon>
+                            Tambah Data Pengguna Clenic
+                        </a>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                        <clr-datagrid>
+                            <!--<clr-dg-column>No</clr-dg-column>-->
+                            <clr-dg-column [clrDgField]="'code'">Kode</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'name'">Nama</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'category'">Kategori</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'description'">Deskripsi</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
+                            <!-- <clr-dg-column>Status</clr-dg-column> -->
+                            <clr-dg-column [clrDgField]="'user_sales_type'">Tipe Sales</clr-dg-column>
+                            <clr-dg-column [clrDgField]="'name_package'">Nama Paket</clr-dg-column>
+                            <clr-dg-column *ngIf="statusButtonEdit==false || statusButtonDelete==false">Aksi</clr-dg-column>
+                    
+                            <clr-dg-row *clrDgItems="let row of userClenic let i = index" [class.active]="i == currentIndex">
+                                <!--<clr-dg-cell>{{i + 1}}</clr-dg-cell>-->
+                                <clr-dg-cell><a (click)="detailUserClenic(
+                                    row.id,
+                                    row.code,
+                                    row.name,
+                                    row.category,
+                                    row.description,
+                                    row.status,
+                                    row.user_sales_type,
+                                    row.package_header_id,
+                                    row.name_package
+                                )" data-title="Lihat" class="label label-info">{{row.code}}</a></clr-dg-cell>
+                                <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.category}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.status}}</clr-dg-cell>
+                                <!-- <clr-dg-cell *ngIf="row.status.toLowerCase()=='active'">Aktif</clr-dg-cell>
+                                <clr-dg-cell *ngIf="row.status.toLowerCase()!='active'">Tidak Aktif</clr-dg-cell> -->
+                                <clr-dg-cell>{{row.user_sales_type}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.name_package}}</clr-dg-cell>
+                                <clr-dg-cell *ngIf="statusButtonEdit==false || statusButtonDelete==false">
+                                    <a (click)="popupUpdateUserClenic(row.id, row.name)" class="label btn-sm label-info label-action" [hidden]="statusButtonEdit" data-title="Ubah Data">
+                                        <cds-icon shape="pencil" size="xs" class="nav-icon ng-star-inserted"></cds-icon>
+                                    </a>
+                                    <a (click)="popupHapusUserClenic(row.id, row.name)" class="label btn-sm label-danger label-action" data-title="Hapus" *ngIf="row.status.toLowerCase()=='active'" [hidden]="statusButtonDelete">
+                                        <cds-icon shape="trash" size="xs" class="nav-icon ng-star-inserted"></cds-icon>
+                                    </a>
+                                </clr-dg-cell>
+                            </clr-dg-row>
+                            <clr-dg-footer>
+                            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                                <clr-dg-page-size #clrDgPageSize [clrPageSizeOptions]="[10,20,50,100]">
+                                    <label [for]="clrDgPageSize.pageSizeOptionsId">Halaman</label>
+                                </clr-dg-page-size>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                dari {{pagination.totalItems}} Pengguna Clenic
+                            </clr-dg-pagination>
+                            </clr-dg-footer>
+                        </clr-datagrid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modals></app-modals>
+<app-create-user-clenic></app-create-user-clenic>
+<app-update-user-clenic></app-update-user-clenic>

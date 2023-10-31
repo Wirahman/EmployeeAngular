@@ -1,0 +1,63 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="formLogActivities" (ngSubmit) = "onDelete()">
+            <clr-control-container>
+                <label>Tahun</label>
+                <input id="tahun" name="tahun" type="text" formControlName="tahun" placeholder="Tahun" [(ngModel)]="logActivities.tahun" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                <clr-control-error *clrIfError="'required'">Harap isi data untuk Tahun</clr-control-error>
+                <clr-control-error *clrIfError="'pattern'">Hanya bisa dimasukkan dengan angka</clr-control-error>
+            </clr-control-container>    
+
+            <button type="submit" class="btn btn-primary" [disabled]="buttonDelete">Hapus</button>
+            <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+        <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

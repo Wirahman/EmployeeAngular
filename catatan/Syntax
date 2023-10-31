@@ -1,0 +1,10 @@
+Menjalankan Aplikasi = Ng Serve
+Membuat Component = ng generate component "lokasi"
+Membuat Service = ng generate service "lokasi"
+Membuat Model = ng generate module "lokasi"
+
+Build Aplikasi = Ng Build
+
+Cara upload ke server
+1. Build
+2. Upload folder yang didalam dist

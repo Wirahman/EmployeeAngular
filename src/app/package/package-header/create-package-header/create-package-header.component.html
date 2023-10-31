@@ -1,0 +1,82 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="formPackageHeader" (ngSubmit) = "onCreate()">
+            <cds-control-message status="error">
+              <p style="white-space: pre;">
+                <font color="Red">{{ alertValidasi }}</font>
+              </p>
+            </cds-control-message>
+
+                <clr-control-container> 
+                    <label>Nama</label>
+                    <input id="name" name="name" type="text" formControlName="name" placeholder="Nama Package Header" [(ngModel)]="packageHeader.name" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama package header</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container>
+                    <div class="clr-toggle-wrapper">
+                        <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="packageHeader.status" (ngModelChange)="periksaAlert($event)" value="active" class="clr-toggle" />
+                        <label for="status" class="clr-control-label">Status</label>
+                    </div>
+                </clr-control-container>
+                
+                <clr-textarea-container>
+                    <label>Deskripsi</label>
+                    <!-- <input id="description" name="description" type="text" class="form-control" placeholder="Description" formControlName="description" [(ngModel)]="permission.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl> -->
+                    <textarea id="description" name="description" type="text" class="form-control" placeholder="Deskripsi" formControlName="description" [(ngModel)]="packageHeader.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrTextarea></textarea>
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk deskripsi</clr-control-error>
+                </clr-textarea-container>
+                  
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>
+            <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+        <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

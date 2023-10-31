@@ -1,0 +1,38 @@
+<div class="alert alert-danger" role="alert" *ngIf="alertValidasi!=''">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <cds-icon class="alert-icon" shape="exclamation-circle"></cds-icon>
+            </div>
+            <span class="alert-text">
+                {{ alertValidasi }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="login-div">
+    <div class="login-wrapper">
+        <form class="login" [formGroup]="formLogin" (ngSubmit) = "onLogin()">
+            <section class="title">
+                <h3 class="welcome">CLE<span>NIC</span></h3>
+                <span>ADM</span>INISTRATOR
+            </section>         
+            <div class="login-group">
+                <clr-control-container>
+                    <input id="username" name="username" type="text" placeholder="Enter the User Name" formControlName="username" [(ngModel)]="pengguna.username" autocomplete="off" clrControl required />
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama pengguna</clr-control-error>
+                </clr-control-container>
+                <clr-password-container>
+                    <input id="password" name="password" type="password" placeholder="Enter the password" formControlName="password" [(ngModel)]="pengguna.password" autocomplete="off" clrPassword required >    
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk password</clr-control-error>
+                </clr-password-container>
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <button type="submit" class="btn btn-primary">Masuk</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+0000000000000000000000000000000000000000 ae73b5f03a3ff2f01069f48e381cc7c9db48ccd2 Wirahman <Wira_uk@yahoo.com> 1676534964 +0700	commit (initial): First Commit
+ae73b5f03a3ff2f01069f48e381cc7c9db48ccd2 ae73b5f03a3ff2f01069f48e381cc7c9db48ccd2 Wirahman <Wira_uk@yahoo.com> 1676534996 +0700	Branch: renamed refs/heads/development to refs/heads/production
+ae73b5f03a3ff2f01069f48e381cc7c9db48ccd2 ae73b5f03a3ff2f01069f48e381cc7c9db48ccd2 Wirahman <Wira_uk@yahoo.com> 1676535094 +0700	Branch: renamed refs/heads/production to refs/heads/development
+ae73b5f03a3ff2f01069f48e381cc7c9db48ccd2 c9119b910f5a98df4f659b99aae08cc22924375a Wirahman <Wira_uk@yahoo.com> 1676538044 +0700	commit: Penambahan material dan ng bootstrap di package.json
+c9119b910f5a98df4f659b99aae08cc22924375a 4e1807d185a4cb2e7ad67dad66e8a63a1aa51b2c Wirahman <Wira_uk@yahoo.com> 1676545424 +0700	commit: CRUD Pengguna
+4e1807d185a4cb2e7ad67dad66e8a63a1aa51b2c 057dbd0338d43742fa319ebcfc7246db70b72176 Wirahman <Wira_uk@yahoo.com> 1676946652 +0700	commit: Hak Akses
+057dbd0338d43742fa319ebcfc7246db70b72176 85fee73a414bfc6e500acb8422ebc028ef8365c1 Wirahman <Wira_uk@yahoo.com> 1677558696 +0700	commit: Login Attempt plus tampilan login
+85fee73a414bfc6e500acb8422ebc028ef8365c1 985f8a30d8a1e7a21795866cefc25efe13ccc3b5 Wirahman <Wira_uk@yahoo.com> 1677653265 +0700	commit: Toast
+985f8a30d8a1e7a21795866cefc25efe13ccc3b5 a6391830e2025adbc2650e5f95f5a70315a5a293 Wirahman <Wira_uk@yahoo.com> 1677663469 +0700	commit: Modals
+a6391830e2025adbc2650e5f95f5a70315a5a293 b32db0b87553b59d4fa257e81fed86ad67b5dc2e Wirahman <Wira_uk@yahoo.com> 1677814766 +0700	commit (merge): Tampilan 3-3-2023
+b32db0b87553b59d4fa257e81fed86ad67b5dc2e 2bf341fe6b8eba7d657e68589639380783bd221f Wirahman <Wira_uk@yahoo.com> 1679310757 +0700	commit: Sampai Pelanggan dan Klinik
+2bf341fe6b8eba7d657e68589639380783bd221f cb406998e729cc3be98b74041d916883fe197676 Wirahman <Wira_uk@yahoo.com> 1680054170 +0700	commit: Sampai User Clenic dan Package Header
+cb406998e729cc3be98b74041d916883fe197676 6ec3be73da92070ce20fe01286af49ef562fbe58 Wirahman <Wira_uk@yahoo.com> 1680055168 +0700	pull: Merge made by the 'ort' strategy.
+6ec3be73da92070ce20fe01286af49ef562fbe58 afe70e5623cd6b0ffd04c86efeed62de70f41021 Wirahman <Wira_uk@yahoo.com> 1680055440 +0700	commit: tambah catatan git
+afe70e5623cd6b0ffd04c86efeed62de70f41021 bcc3ee469b5d411c0cac518dc9e510279e6e777c Wirahman <Wira_uk@yahoo.com> 1680577996 +0700	commit: Tanggal 4 bulan 4
+bcc3ee469b5d411c0cac518dc9e510279e6e777c b24489ec845b86095eff961c4e30a9aac7e6ef07 Wirahman <Wira_uk@yahoo.com> 1681105052 +0700	commit: Tanggal 10 bulan 4
+b24489ec845b86095eff961c4e30a9aac7e6ef07 7135f131facf8bea0cb8863b2d0b607d9a2c5904 Wirahman <Wira_uk@yahoo.com> 1681111975 +0700	commit: tanggal 10 bulan 4 part 2
+7135f131facf8bea0cb8863b2d0b607d9a2c5904 21122a8c166fd68b9565dd218da0f3f9b9a1c288 Wirahman <Wira_uk@yahoo.com> 1681117594 +0700	commit: Tanggal 10 bulan 4
+21122a8c166fd68b9565dd218da0f3f9b9a1c288 23b29f80b30b0856e51eb7bcaf47bc35bf3fec80 Wirahman <Wira_uk@yahoo.com> 1681283071 +0700	commit: Perbaikan tanggal 12 bulan 4
+23b29f80b30b0856e51eb7bcaf47bc35bf3fec80 f805e3a9daa9bb9efa1b8e37fd29609fd4bbed35 Wirahman <Wira_uk@yahoo.com> 1681363221 +0700	commit: perbaikan login attempt menjadi 2 menit
+f805e3a9daa9bb9efa1b8e37fd29609fd4bbed35 d3e9eed0a912354d94ab2a1f0a97febbee81f711 Wirahman <Wira_uk@yahoo.com> 1681808559 +0700	commit: Perbaikan tanggal 18 bulan 4 2023
+d3e9eed0a912354d94ab2a1f0a97febbee81f711 b224b7299c4ac1f2c88378c9da783a268eb42e38 Wirahman <Wira_uk@yahoo.com> 1683171154 +0700	commit: Siap untuk QA & QC

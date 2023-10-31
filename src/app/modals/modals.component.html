@@ -1,0 +1,23 @@
+<clr-modal [(clrModalOpen)]="show">
+  <div class="modal-title">
+    <p style="text-align: center;">
+      <strong style="font-size:200%;">
+        {{ judulModal }}
+      </strong>
+    </p>
+  </div>
+  <div class="modal-body">
+      <p style="white-space: pre;" style="text-align:center">
+        <img id="gambarModal" src={{gambarModal}} style="width:100px;" [hidden]="statusGambar">
+      </p>
+      <p style="white-space: pre;">
+        {{ bodyMessage }}
+      </p>
+  </div>
+
+  <div class="modal-footer">
+    <button id="btnDelete" name="btnDelete" type="button" class="btn btn-primary" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button>
+    <button id="btnResetPassword" name="btnResetPassword" type="button" class="btn btn-primary" [hidden]="statusButtonResetPassword" (click)="functionHapus(jenisFunction, id)">Reset Password</button>
+    <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+  </div>
+</clr-modal>

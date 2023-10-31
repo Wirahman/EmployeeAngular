@@ -1,0 +1,15 @@
+.text-header {
+    font-size: 20px;
+      font-weight: 600;
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      color: #247bae;
+      margin-bottom: 1rem;
+  }
+  .search {
+    padding: 0 16px;
+    border-radius: 25px;
+    border: solid 1px #d3d3d3;
+  }
+  

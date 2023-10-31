@@ -1,0 +1,127 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="formUserClenic" (ngSubmit) = "onCreate()">
+            <cds-control-message status="error">
+              <p style="white-space: pre;">
+                <font color="Red">{{ alertValidasi }}</font>
+              </p>
+            </cds-control-message>
+
+                <clr-control-container> 
+                    <label>Nama</label>
+                    <input id="name" name="name" type="text" formControlName="name" placeholder="Nama Pengguna Clenic" [(ngModel)]="userClenic.name" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama pengguna clenic</clr-control-error>
+                </clr-control-container>
+
+                <clr-control-container>
+                    <label>Category</label>
+                    <select id="category" name="category" formControlName="category" [(ngModel)]="userClenic.category" (ngModelChange)="periksaAlert($event)" clrControl required >  
+                        <option disabled>Category</option>  
+                        <option value="primary">Primary</option>  
+                        <option value="addon">Addon</option>  
+                    </select>  
+                    <clr-control-error *clrIfError="'required'">Required</clr-control-error>  
+                </clr-control-container>
+        
+                <clr-textarea-container>
+                    <label>Deskripsi</label>
+                    <!-- <input id="description" name="description" type="text" class="form-control" placeholder="Description" formControlName="description" [(ngModel)]="permission.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrControl> -->
+                    <textarea id="description" name="description" type="text" class="form-control" placeholder="Deskripsi" formControlName="description" [(ngModel)]="userClenic.description" (ngModelChange)="periksaAlert($event)" style="width:800px;" clrTextarea></textarea>
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk deskripsi</clr-control-error>
+                </clr-textarea-container>
+                  
+                <clr-control-container>
+                    <div class="clr-toggle-wrapper">
+                        <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="userClenic.status" (ngModelChange)="periksaAlert($event)" value="active" class="clr-toggle" />
+                        <label for="status" class="clr-control-label">Status</label>
+                    </div>
+                </clr-control-container>
+    
+                <clr-control-container>
+                    <label>Tipe Sales</label>
+                    <select id="user_sales_type" name="user_sales_type" formControlName="user_sales_type" [(ngModel)]="userClenic.user_sales_type" (ngModelChange)="periksaAlert($event)" clrControl required >  
+                        <option disabled>Tipe Sales</option>  
+                        <option value="unit">Unit</option>  
+                        <option value="package">Package</option>  
+                    </select>  
+                    <clr-control-error *clrIfError="'required'">Required</clr-control-error>  
+                </clr-control-container>
+
+                <clr-combobox-container>
+                    <label>Kepala Paket</label>
+                    <clr-combobox formControlName="package_header_id" [(ngModel)]="selectPackageHeader"  (ngModelChange)="periksaAlert($event);"  name="package_header_id" required>
+                        <clr-options>
+                            <clr-option *clrOptionItems="let row of PackageHeader; field:'name'" [clrValue]="row">
+                                <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                            </clr-option>
+                        </clr-options>
+                    </clr-combobox>
+                    
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk pelanggan</clr-control-error>
+                </clr-combobox-container>   
+
+                <clr-control-container>
+                    <label>Harga</label>
+                    <span>Rp.</span>
+                    <input id="price" name="price" type="float" formControlName="price" placeholder="Harga" [(ngModel)]="userClenic.price" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required [value]="userClenic.price | number:'1.2-2'" >
+                    
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk harga</clr-control-error>
+                    <clr-control-error *clrIfError="'pattern'">Hanya bisa dimasukkan dengan angka</clr-control-error>
+                </clr-control-container>    
+
+
+                
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>
+            <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+        <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

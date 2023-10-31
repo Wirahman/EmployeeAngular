@@ -1,0 +1,146 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="formRegister" (ngSubmit) = "onRegister()">
+            <cds-control-message status="error">
+              <p style="white-space: pre;">
+                <font color="Red">{{ alertValidasi }}</font>
+              </p>
+            </cds-control-message>
+
+                <clr-control-container> 
+                    <label>Nama</label>
+                    <input id="name" name="name" type="text" formControlName="name" [(ngModel)]="pengguna.name" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama</clr-control-error>
+                </clr-control-container>
+        
+                <clr-control-container>
+                    <label>Nama pengguna</label>
+                    <input id="username" name="username" type="text" formControlName="username" [(ngModel)]="pengguna.username" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                    <clr-control-error *clrIfError="'required'">Harap isi data untuk nama pengguna</clr-control-error>
+                </clr-control-container>    
+
+                <div class = "clr-row">
+                    <clr-password-container class="clr-col-6">
+                        <label>Password</label>
+                        <input id="password" name="password" type="password" formControlName="password" placeholder="Password"  [(ngModel)]="pengguna.password" (ngModelChange)="periksaAlert($event)" autocomplete="off" clrPassword required >
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk password</clr-control-error>
+                    </clr-password-container>
+                    <clr-password-container class="clr-col-6">
+                        <label>Konfirmasi Password</label>
+                        <input id="password_conf" name="password_conf" type="password" formControlName="password_conf" placeholder="Password Konfirmasi"  [(ngModel)]="pengguna.password_conf" (ngModelChange)="periksaAlert($event)" autocomplete="off" clrPassword required >
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk konfirmasi password</clr-control-error>
+                    </clr-password-container>
+                </div>
+                    
+                <div class="clr-row">
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Unit</label>
+                        <clr-combobox formControlName="department_id" [(ngModel)]="selectDepartment" (ngModelChange)="periksaAlert($event)" name="department_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of department; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk unit</clr-control-error>
+                    </clr-combobox-container>    
+            
+                    <clr-combobox-container class="clr-col-6">
+                        <label>Peran</label>
+                        <clr-combobox formControlName="role_id" [(ngModel)]="selectRoleID"  (ngModelChange)="periksaAlert($event)"  name="role_id" required>
+                            <clr-options>
+                                <clr-option *clrOptionItems="let row of role; field:'name'" [clrValue]="row">
+                                    <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.name}}
+                                    <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                                </clr-option>
+                            </clr-options>
+                        </clr-combobox>
+                        
+                        <clr-control-error *clrIfError="'required'">Harap isi data untuk peran</clr-control-error>
+                    </clr-combobox-container>
+                </div>
+            
+            <clr-control-container>
+                <div class="clr-toggle-wrapper">
+                    <input formControlName="status" type="checkbox" id="status" name="status" [(ngModel)]="pengguna.status" (ngModelChange)="periksaAlert($event)" value="active" class="clr-toggle" />
+                    <label for="status" class="clr-control-label">Status</label>
+                </div>
+
+                <!-- <label>Status</label>
+                <select id="status" name="status" formControlName="status" [(ngModel)]="pengguna.status" (ngModelChange)="periksaAlert($event)" clrControl required >  
+                    <option disabled>Status</option>  
+                    <option>Choose Website</option>
+                    <option value="Active">Active</option>  
+                    <option value="Inactive">Inactive</option>  
+                </select>  
+                <clr-control-error *clrIfError="'required'">Required</clr-control-error>   -->
+            </clr-control-container>
+    
+            <!-- <clr-control-container style="width:20%;">
+                <label>Email</label>
+                <input id="email" name="email" type="email" class="form-control" placeholder="Email" formControlName="email" [(ngModel)]="pengguna.email" (ngModelChange)="periksaAlert($event)" size="100" clrControl required >
+                <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                <clr-control-error *clrIfError="'email'">Invalid Email</clr-control-error>
+            </clr-control-container> -->
+            
+            <!-- <clr-control-container style="width:20%;">
+                <label>Handphone</label>
+                <input id="handphone" name="handphone" type="text" class="form-control" placeholder="Handphone" formControlName="handphone" [(ngModel)]="pengguna.handphone" (ngModelChange)="periksaAlert($event)" size="100" clrControl required >
+                <clr-control-error *clrIfError="'required'">Required</clr-control-error>
+                <clr-control-error *clrIfError="'pattern'">Only Number</clr-control-error>
+            </clr-control-container> -->
+
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Simpan</button>
+            <button (click)="close()" type="submit" class="btn btn-outline-dark">Kembali</button>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button id="btnDelete" name="btnDelete" type="button" class="btn btn-outline-dark" [hidden]="statusButtonDelete" (click)="functionHapus(jenisFunction, id)">Hapus</button> -->
+        <!-- <button (click)="close()" type="submit" class="btn btn-primary">Kembali</button> -->
+    </div>
+</clr-modal>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
