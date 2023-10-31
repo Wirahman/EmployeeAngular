@@ -15,7 +15,7 @@ export class RolePermissionService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': 'Bearer 4pb4tech',
+      'Authorization': 'Bearer Token',
       'HeaderUsername': localStorage.getItem('username')  || '{}',
       'HeaderID': localStorage.getItem('userID')  || '{}',
       'UserToken': localStorage.getItem('token')  || '{}'
