@@ -7,6 +7,14 @@ import { LogActivitiesComponent } from './log-activities/log-activities.componen
 import { DeleteLogActivitiesComponent } from './log-activities/delete-log-activities/delete-log-activities.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './pengguna/login/login.component';
+
+import { EmployeeComponent } from './employee/employee.component';
+import { CreateEmployeeComponent } from './employee/create-employee/create-employee.component';
+import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
+
+
+
+// Component yang dibawah tidak terpakai namun sangat rumit jika harus dihapus 1 per 1
 import { PenggunaComponent } from './pengguna/pengguna.component';
 import { CreatePenggunaComponent } from './pengguna/create-pengguna/create-pengguna.component';
 import { UpdatePenggunaComponent } from './pengguna/update-pengguna/update-pengguna.component';
@@ -69,7 +77,11 @@ const routes: Routes = [
     path: 'Dashboard', 
     component: HeaderComponent ,
     children: [
-      { path: '', component:  PenggunaComponent },
+      { path: '', component:  EmployeeComponent },
+      { path: 'Employee', component:  EmployeeComponent },
+      { path: 'CreateEmployee', component:  CreateEmployeeComponent },
+      { path: 'UpdateEmployee/:id', component: UpdateEmployeeComponent },
+
       { path: 'Pengguna', component:  PenggunaComponent },
       { path: 'CreatePengguna', component:  CreatePenggunaComponent },
       { path: 'UpdatePengguna/:id', component: UpdatePenggunaComponent },

@@ -1,0 +1,65 @@
+<div class="clr-row">
+    <div class="clr-col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="content-header">
+                    <div class="content-title"> <img src="assets/icons/us.png" class="img-icon" />{{ title }}</div>
+                    <div class="content-element">
+                        <a (click)="popupCreateEmployee()" class="btn btn-rounded btn-primary btn-icon">
+                            <cds-icon shape="plus-circle" class="nav-icon ng-star-inserted"></cds-icon>
+                            Create Employee
+                        </a>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                        <clr-datagrid>
+                        <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'birthDate'">Birth Date</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'basicSalary'">Basic Salary</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'group'">Group</clr-dg-column>
+                        <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+                        <clr-dg-column>Aksi</clr-dg-column>
+                    
+                        <clr-dg-row *clrDgItems="let row of employee let i = index" [clrDgItem]="employee">
+                            <clr-dg-cell>{{row.firstName}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.lastName}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.email}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.birthDate}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.basicSalary}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.status}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.group.groupName}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                            <clr-dg-cell>
+                                <a (click)="popupDetailEmployee(row.id, row.username)" class="label btn-sm label-info label-action" data-title="Detail Employee">
+                                    <cds-icon shape="key" size="xs" class="nav-icon ng-star-inserted"></cds-icon>
+                                </a>
+                                <a (click)="popupUpdateEmployee(row.id, row.username, row)" class="label btn-sm label-warning label-action" data-title="Edit Data">
+                                    <cds-icon shape="pencil" size="xs" class="nav-icon ng-star-inserted"></cds-icon>
+                                </a>
+                                <a (click)="popupDeleteEmployee(row.id, row.username)" class="label btn-sm label-danger label-action" *ngIf="row.status.toLowerCase()=='active'" data-title="Delete Data">
+                                    <cds-icon shape="trash" size="xs"  class="nav-icon ng-star-inserted"></cds-icon>
+                                </a>
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                        <clr-dg-footer>
+                            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                                <clr-dg-page-size #clrDgPageSize [clrPageSizeOptions]="[10,20,50,100]">
+                                    <label [for]="clrDgPageSize.pageSizeOptionsId">Halaman</label>
+                                </clr-dg-page-size>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                dari {{pagination.totalItems}} Pengguna
+                            </clr-dg-pagination>
+                        </clr-dg-footer>
+                    </clr-datagrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modals></app-modals>
+<app-create-employee></app-create-employee>
+<app-update-employee></app-update-employee>

@@ -153,6 +153,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
+    this.tampilToastr('info', 'Terima Kasih', localStorage.getItem('username'));
+    localStorage.clear();
+    localStorage.setItem('menu', 'Login');
+    this.router.navigate(['/Login']);
+  }
+
+  logoutAwal(){
     this.pengguna.username = localStorage.getItem('username')!;
     this.penggunaService.logout(this.pengguna).subscribe(
       (data: any) => {

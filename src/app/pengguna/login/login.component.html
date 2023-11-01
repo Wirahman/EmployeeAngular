@@ -13,18 +13,18 @@
 
 <div class="login-div">
     <div class="login-wrapper">
-        <form class="login" [formGroup]="formLogin" (ngSubmit) = "onLogin()">
+        <form class="login" [formGroup]="form" (ngSubmit) = "onLogin()">
             <section class="title">
-                <h3 class="welcome">CLE<span>NIC</span></h3>
-                <span>ADM</span>INISTRATOR
+                <h3 class="welcome">EMP<span>LO</span>YEE</h3>
+                <span>LOG</span>IN
             </section>         
             <div class="login-group">
                 <clr-control-container>
-                    <input id="username" name="username" type="text" placeholder="Enter the User Name" formControlName="username" [(ngModel)]="pengguna.username" autocomplete="off" clrControl required />
+                    <input id="username" name="username" type="text" placeholder="Enter the User Name" formControlName="username" [(ngModel)]="username" autocomplete="off" clrControl required />
                     <clr-control-error *clrIfError="'required'">Harap isi data untuk nama pengguna</clr-control-error>
                 </clr-control-container>
                 <clr-password-container>
-                    <input id="password" name="password" type="password" placeholder="Enter the password" formControlName="password" [(ngModel)]="pengguna.password" autocomplete="off" clrPassword required >    
+                    <input id="password" name="password" type="password" placeholder="Enter the password" formControlName="password" [(ngModel)]="password" autocomplete="off" clrPassword required >    
                     <clr-control-error *clrIfError="'required'">Harap isi data untuk password</clr-control-error>
                 </clr-password-container>
                 <div class="row">

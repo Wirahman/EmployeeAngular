@@ -65,6 +65,9 @@ import { UpdateContractDetailComponent } from './contract/contract-detail/update
 import { LogActivitiesComponent } from './log-activities/log-activities.component';
 import { DeleteLogActivitiesComponent } from './log-activities/delete-log-activities/delete-log-activities.component';
 import { GlobalComponent } from './global/global.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { CreateEmployeeComponent } from './employee/create-employee/create-employee.component';
+import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +118,10 @@ import { GlobalComponent } from './global/global.component';
     UpdateContractDetailComponent,
     LogActivitiesComponent,
     DeleteLogActivitiesComponent,
-    GlobalComponent
+    GlobalComponent,
+    EmployeeComponent,
+    CreateEmployeeComponent,
+    UpdateEmployeeComponent
   ],
   imports: [
     BrowserModule,

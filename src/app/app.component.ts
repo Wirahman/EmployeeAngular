@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Administrator Clenic';
+  title = 'Employee';
   username: string | undefined | null;
 
   constructor(
@@ -21,9 +21,6 @@ export class AppComponent {
   }
 
   checkSessionLogin() {
-    const pengguna = localStorage.getItem('pengguna');
-    console.log(pengguna);
-    console.log(this.username);
     if(localStorage.getItem('username') != undefined){
       this.router.navigate(['/Dashboard']);
     }else{

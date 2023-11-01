@@ -1,0 +1,129 @@
+<clr-modal [(clrModalOpen)]="showModals">
+    <div class="modal-title">
+        {{ judulModal }}
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit) = "onCreate()">
+            <cds-control-message status="error">
+              <p style="white-space: pre;">
+                <font color="Red">{{ alertValidasi }}</font>
+              </p>
+            </cds-control-message>
+            <clr-control-container> 
+                <label>Username</label>
+                <input id="username" name="username" type="text" formControlName="username" placeholder="Username" [(ngModel)]="username" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                <clr-control-error *clrIfError="'required'">Please Insert Username</clr-control-error>
+            </clr-control-container>
+    
+            <clr-control-container> 
+              <label>First Name</label>
+              <input id="firstName" name="firstName" type="text" formControlName="firstName" placeholder="First Name" [(ngModel)]="firstName" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+              <clr-control-error *clrIfError="'required'">Please Insert First Name</clr-control-error>
+            </clr-control-container>
+  
+            <clr-control-container> 
+              <label>Last Name</label>
+              <input id="lastName" name="lastName" type="text" formControlName="lastName" placeholder="Last Name" [(ngModel)]="lastName" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+              <clr-control-error *clrIfError="'required'">Please Insert Last Name</clr-control-error>
+            </clr-control-container>
+  
+            <clr-control-container>
+              <label>Email</label>
+              <input id="email" name="email" type="text" formControlName="email" placeholder="Email" [(ngModel)]="email" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+              <clr-control-error *clrIfError="'required'">Please Insert Email</clr-control-error>
+              <clr-control-error *clrIfError="'email'">Please Insert Email Valid</clr-control-error>
+            </clr-control-container>    
+
+            <clr-date-container> 
+              <label>Birth Date</label>
+              <input id="birthDate" name="birthDate" type="date" formControlName="birthDate" placeholder="Birth Date" [(ngModel)]="birthDate" (ngModelChange)="periksaAlert($event);" autocomplete="off" clrDate required >
+              <clr-control-error *clrIfError="'required'">Please Insert Birth Date</clr-control-error>
+            </clr-date-container>
+  
+            <clr-control-container> 
+              <label>Basic Salary</label>
+              <input id="basicSalary" name="basicSalary" type="text" formControlName="basicSalary" placeholder="Basic Salary" [(ngModel)]="basicSalary" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+              <clr-control-error *clrIfError="'required'">Please Insert Basic Salary</clr-control-error>
+              <clr-control-error *clrIfError="'pattern'">Please Insert Number Value</clr-control-error>
+            </clr-control-container>
+  
+            <clr-control-container> 
+              <label>Status</label>
+              <input id="status" name="status" type="text" formControlName="status" placeholder="Status" [(ngModel)]="status" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+              <clr-control-error *clrIfError="'required'">Please Insert Status</clr-control-error>
+            </clr-control-container>
+  
+            <div class="clr-row">
+              <clr-combobox-container class="clr-col-6">
+                  <label>Group</label>
+                  <clr-combobox formControlName="group" [(ngModel)]="group" (ngModelChange)="periksaAlert($event);" name="group" required>
+                      <clr-options>
+                          <clr-option *clrOptionItems="let row of arrayGroup; field:'groupName'" [clrValue]="row">
+                              <clr-icon shape="world" role="img" aria-label="World is turning"></clr-icon> {{row.groupName}}
+                              <clr-icon shape="sun" role="img" aria-label="Sun is shining"></clr-icon>
+                          </clr-option>
+                      </clr-options>
+                  </clr-combobox>
+                  <clr-control-error *clrIfError="'required'">Please Insert Group</clr-control-error>
+              </clr-combobox-container>    
+      
+              <clr-combobox-container class="clr-col-6">
+                
+              </clr-combobox-container>
+          </div>
+      
+            <clr-control-container> 
+              <label>Description</label>
+              <input id="description" name="description" type="text" formControlName="description" placeholder="Description" [(ngModel)]="description" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+              <clr-control-error *clrIfError="'required'">Please Insert Description</clr-control-error>
+            </clr-control-container>
+  
+            <button type="submit" class="btn btn-primary" [disabled]="buttonSave">Save</button>
+            <button (click)="close()" type="submit" class="btn btn-outline-dark">Back</button>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        
+    </div>
+</clr-modal>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
