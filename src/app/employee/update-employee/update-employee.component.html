@@ -74,11 +74,11 @@
 
               </div>
           
-                <clr-control-container> 
+                <clr-date-container> 
                   <label>Description</label>
-                  <input id="description" name="description" type="text" formControlName="description" placeholder="Description" [(ngModel)]="description" (ngModelChange)="periksaAlert($event)" autocomplete="off" size="100" clrControl required >
+                  <input id="description" name="description" type="date" formControlName="description" placeholder="Description" [(ngModel)]="description" (ngModelChange)="periksaAlert($event);" autocomplete="off" clrDate required >
                   <clr-control-error *clrIfError="'required'">Please Insert Description</clr-control-error>
-                </clr-control-container>
+                </clr-date-container>
       
                 <button type="submit" class="btn btn-primary" [disabled]="buttonUpdate">Save</button>&#160;&#160;
                 <button (click)="close()" type="submit" class="btn btn-outline-dark">Back</button>

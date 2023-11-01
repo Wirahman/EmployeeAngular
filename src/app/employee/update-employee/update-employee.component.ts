@@ -78,17 +78,26 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   onUpdate() {
-    
+    console.log("Karena Menggunakan Data Dummy, jadi saya tidak menggunakan API untuk hit Ke Database");
+    this.headerComponent.tampilToastr('success', 'Employee Data Has Been Updated', '');
+    this.close();
+    this.employeeComponent.ngOnInit();
   }
   
   periksaAlert(event: any): void{
+    let tanggalSekarang = new Date();
     if(this.form.invalid){
       this.buttonUpdate = true;
     }else{
-      this.buttonUpdate = false;
+      if(this.datepipe.transform(tanggalSekarang, 'yyyy-MM-dd')! > this.datepipe.transform(this.birthDate,"yyyy-MM-dd")!){
+        this.buttonUpdate = false;
+      } else {
+        this.headerComponent.tampilToastr('error', 'Please Insert Correct Birth Date', '');
+        this.buttonUpdate = true;
+      }
     }
   }
-  
+
   checkNilaiGroup(event: any): void{
     console.log('group');
     console.log(this.group);
@@ -126,10 +135,7 @@ export class UpdateEmployeeComponent implements OnInit {
     this.basicSalary = array.basicSalary;
     this.status = array.status;
     this.group = array.group;
-    this.description = array.description;
-    console.log('array');
-    console.log(array);
-      
+    this.description = this.datepipe.transform(array.description,"MM/dd/yyyy");
   }
 
   close() {

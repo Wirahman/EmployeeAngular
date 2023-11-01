@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild, Injectable, } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild, Injectable,Inject, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatCurrency } from '@angular/common';
 
 // Clarity Design
 import '@cds/core/forms/register.js';
@@ -52,6 +52,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
   contohVariabel:any='';
 
   constructor(
+    @Inject(LOCALE_ID) public locale: string,
     private router: Router,
     private appComponent: AppComponent,
     private headerComponent: HeaderComponent,
@@ -59,7 +60,9 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     private renderer:Renderer2,
     private el:ElementRef,
     private route: ActivatedRoute,
+    private datepipe: DatePipe,
     private formBuilder: FormBuilder
+    
   ) { }
 
   ngOnInit(): void {
@@ -113,12 +116,24 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     this.headerComponent.tampilToastr('info', '', 'Employee have been deleted');
   }
 
-  popupDetailEmployee(id: any, username: any){
+  popupDetailEmployee(id: any, username: any, array: any){
+    let rupiah = formatCurrency(array.basicSalary,this.locale, 'Rp. '); 
     const judulModal = 'Detail Employee';
-    const bodyMessage = 'Detail Employee ' + username + '';
+    const bodyMessage = 
+    'Username = ' + username + '\n' + 
+    'First Name = ' + array.firstName + '\n' + 
+    'Last Name = ' + array.lastName + '\n' + 
+    'Email = ' + array.email + '\n' + 
+    'Birth Date = ' + this.datepipe.transform(array.birthDate, 'dd MMMM yyyy') + '\n' + 
+    // 'Basic Salary = ' + 'Rp. ' + array.basicSalary + '\n' + 
+    'Basic Salary = ' + rupiah + '\n' + 
+    'Group = ' + array.group.groupName + '\n' + 
+    'Description = ' + this.datepipe.transform(array.description, 'dd MMMM yyyy') + '\n'
+    ;
+
     const gambar = '';
     const statusButton = true;
-    const statusButtonResetPassword = false;
+    const statusButtonResetPassword = true;
     const statusGambar = true;
     const jenisFunction = 'reset-password-user';
     

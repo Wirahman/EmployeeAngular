@@ -29,12 +29,13 @@
                             <clr-dg-cell>{{row.lastName}}</clr-dg-cell>
                             <clr-dg-cell>{{row.email}}</clr-dg-cell>
                             <clr-dg-cell>{{row.birthDate}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.basicSalary}}</clr-dg-cell>
+                            <!-- <clr-dg-cell>{{row.basicSalary}}</clr-dg-cell> -->
+                            <clr-dg-cell>{{ row.basicSalary | currency:'Rp. ':true:'1.2-2' }}</clr-dg-cell>
                             <clr-dg-cell>{{row.status}}</clr-dg-cell>
                             <clr-dg-cell>{{row.group.groupName}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
                             <clr-dg-cell>
-                                <a (click)="popupDetailEmployee(row.id, row.username)" class="label btn-sm label-info label-action" data-title="Detail Employee">
+                                <a (click)="popupDetailEmployee(row.id, row.username, row)" class="label btn-sm label-info label-action" data-title="Detail Employee">
                                     <cds-icon shape="key" size="xs" class="nav-icon ng-star-inserted"></cds-icon>
                                 </a>
                                 <a (click)="popupUpdateEmployee(row.id, row.username, row)" class="label btn-sm label-warning label-action" data-title="Edit Data">
