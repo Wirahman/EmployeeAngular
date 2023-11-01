@@ -1,8 +1,12 @@
 # EmployeeAngular
+Install sesuai versi dibawah
+jalankan "ng serve"
+buka url "http://localhost:4200/"
 Ketika Login gunakan nilai
 Username = Wirahman
 Password = Employee
 
+Setelah login akan masuk ke menu utama untuk menampilkan employee
 Fitur Logout terletak di folder src/app/header/header.component.ts (Karena header digunakan untuk menu utama)
 
 
